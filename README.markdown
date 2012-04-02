@@ -2,6 +2,7 @@
 
 * MongoDB 2.0.2
 * Python 2.7
+* Pymongo
 * WebPy 
 * TweetStream
 
