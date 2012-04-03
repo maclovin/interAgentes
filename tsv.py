@@ -1,4 +1,7 @@
 import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 import os
 from pymongo import Connection
 from datetime import date
@@ -17,29 +20,35 @@ def usage():
 	
 	Ex:
 	python tsv.py joao 2012-03-28
-        python tsv.py joao 2012-03-28 14
+	python tsv.py joao 2012-03-28 14
 
 	"""
 	return usage
 	
 def toTSV(client, date, hour, content):
-	fname = '%s/%s_%s.tsv' %(client, date, hour)
+	if hour == None:
+		fname = '%s/%s.tsv' %(client, date)
+	else:
+		fname = '%s/%s_%s.tsv' %(client, date, hour)
+		
 	try:
-		f = open(fname, 'a')
-		f.write(content)
-	except:
-		os.mkdir(client)
 		f = open(fname, 'w')
 		f.write(content)
-		
-	f.close
+		f.close
+	except:
+		if not os.path.isdir(client):
+			os.mkdir(client)
+
+		f = open(fname, 'w')
+		f.write(content)
+		f.close
 
 def search(client, date, hour):
-	content = None
+	content = ''
 
-	if date and hour:
+	if not date == None and not hour == None:
 		myTweets = dbTweet.find({ "hourScrap":hour, "dateScrap":date })
-	elif date:
+	elif not date == None:
 		myTweets = dbTweet.find({ "dateScrap":date })
 	
 	try: 	
@@ -47,11 +56,10 @@ def search(client, date, hour):
 			content += "%s\t%s\t%s\n" %(myTweet['autor'], myTweet['mensagem'], myTweet['dateTime'])
 	except:
 		print 'Nao ha dados'
+		
 
-	try:
-		toTSV(client, date, hour, content)
-	except:
-		print 'Impossivel criar TSV'
+	print "Contudo: %s\n\n" %(content)
+	toTSV(client, date, hour, content)
 
 if __name__ == "__main__":
 	action = None
