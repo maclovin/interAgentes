@@ -11,7 +11,7 @@ db = myConnection.tweet
 #passar como parametro nos objetos
 dbTweet = db.tweet
 
-words = sys.argv[1]
+words = [sys.argv[1]]
 people = [1000]
 
 #instancia o objeto tweets
