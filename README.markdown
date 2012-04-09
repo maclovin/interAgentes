@@ -7,11 +7,14 @@
 * TweetStream
 
 # Como funciona
+Primeiramente é necessário levantar o servidor mongo, dependendo de seu ambiente o comando `mongod` é o suficiente.
 
 ## scrap.py
-`python scrap.py [termo de busca]`
+Primeiro edite o arquivo terms.txt adicionando termos de busca em cada linha do arquivo.
+Depois execute o aplicativo de Scrapping:
+`python scrap.py`
 
-Responsável por extrair dados do Twitter Streaming API e guardar no banco de dados MongoDB.
+Ele será responsável por extrair dados do Twitter Streaming API e guardar no banco de dados MongoDB.
 
 ## tsv.py
 `python tsv.py [nome do diretorio] [data]`                                                                           
