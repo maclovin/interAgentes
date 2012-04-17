@@ -53,12 +53,12 @@ def search(client, date, hour):
 	
 	try: 	
 		for myTweet in myTweets:
-			content += "%s\t%s\t%s\n" %(myTweet['autor'], myTweet['mensagem'], myTweet['dateTime'])
+			content += "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" %(myTweet['dateScrap'], myTweet['hourScrap'], myTweet['seguidores'], myTweet['rts'], myTweet['mensagem'], myTweet['teor'], myTweet['obs'], myTweet['url'], myTweet['dateTime'], myTweet['autor'], myTweet['location'], myTweet['statusCount'], myTweet['createdAt'], myTweet['hashTags'], myTweet['entitles'], myTweet['mencoes'], myTweet['autorOriginal'])
 	except:
 		print 'Nao ha dados'
 		
 
-	print "Contudo: %s\n\n" %(content)
+	print "Conteudo: %s\n\n" %(content)
 	toTSV(client, date, hour, content)
 
 if __name__ == "__main__":
@@ -79,4 +79,3 @@ if __name__ == "__main__":
 	
  	if not action == None and not date == None:
 		search(action,date,hour)
-		#toTSV(action,date, hour, '\tlol\n')
