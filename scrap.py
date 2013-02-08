@@ -26,7 +26,7 @@ for line in lines:
 		myTerms.append(line)
 people = [1000]
 
-with tweetstream.FilterStream("neuromancer_br", "q1w2e3r4", track=myTerms, follow=people) as stream:
+with tweetstream.FilterStream("loooool", "q1w2e3r4", track=myTerms, follow=people) as stream:
 	for tweet in stream:
 		dateToday = time.strftime("%Y-%m-%d")
 		hour = time.strftime("%H")
